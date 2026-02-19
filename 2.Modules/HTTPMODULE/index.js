@@ -1,10 +1,30 @@
 const http = require('http');
 const port = 8089;
 
-const server = http.createServer((req,res) =>{
- res.write("hello");
- res.end();
-});
+// const server = http.createServer((req,res) =>{
+//  res.write("hello");
+//  res.end();
+// });
+
+const server = http.createServer((req, res) => {
+   const url = req.url;
+   if(url === "/") {
+    res.write("welcome to homepage");
+     res.end();
+   }
+   else if(url === "/about") {
+    res.write("welcome to about page");
+    res.end();
+   }
+   else if(url === "/contact") {
+    res.write("welcome to contact page");
+     res.end();
+   }
+   else{
+    res.write("404 page not found ");
+    res.end();
+   }
+})
 
 server.listen(port, ()=>{
     console.log("hey im listing on port",port)
